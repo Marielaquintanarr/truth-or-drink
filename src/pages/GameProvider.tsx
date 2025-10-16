@@ -1,16 +1,37 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
+import type { ReactNode } from "react";
 
-const GameContext = createContext();
+interface GameContextType {
+    players: any[];
+    selectedLevel: string | null;
+    addPlayer: (name: string) => void;
+    removePlayer: (id: number) => void;
+    updatePlayerName: (id: number, name: string) => void;
+    selectLevel: (level: string) => void;
+    getCurrentPlayer: () => any;
+    getNextPlayer: () => any;
+    incrementAnswers: (playerId: number) => void;
+    incrementDrinks: (playerId: number) => void;
+    getPlayerStats: (playerId: number) => any;
+    getStatsFormatted: () => Record<string, [number, number]>;
+    getGameInfo: () => any;
+    resetGame: () => void;
+    nextPlayer: any;
+  }
+
+  
+const GameContext = createContext<GameContextType | undefined>(undefined);
 
 export const useGame = () => {
     const context = useContext(GameContext);
     if (!context) {
-        throw new Error('useGame must be used within a GameProvider');
+      throw new Error("useGame must be used within a GameProvider");
     }
     return context;
-};
+  };
+  
 
-export const GameProvider = ({ children }) => {
+export const GameProvider = ({ children }: { children: ReactNode }) => {
     const [players, setPlayers] = useState([
         { id: 1, name: "" },
         { id: 2, name: "" }
@@ -21,7 +42,7 @@ export const GameProvider = ({ children }) => {
     const [currentRound, setCurrentRound] = useState(1);
     
     // Sistema de estadísticas: { playerId: { answers: number, drinks: number } }
-    const [playerStats, setPlayerStats] = useState({});
+    const [playerStats, setPlayerStats] = useState<Record<string, { answers: number; drinks: number }>>({});
 
     const addPlayer = () => {
         const newPlayer = {
@@ -31,17 +52,17 @@ export const GameProvider = ({ children }) => {
         setPlayers([...players, newPlayer]);
     };
 
-    const removePlayer = (id) => {
+    const removePlayer = (id : number) => {
         setPlayers(players.filter(player => player.id !== id));
     };
 
-    const updatePlayerName = (id, name) => {
+    const updatePlayerName = (id : number, name : string) => {
         setPlayers(players.map(player => 
             player.id === id ? { ...player, name } : player
         ));
     };
 
-    const initializePlayerStats = (playerId) => {
+    const initializePlayerStats = (playerId : number) => {
         if (!playerStats[playerId]) {
             setPlayerStats(prev => ({
                 ...prev,
@@ -50,7 +71,7 @@ export const GameProvider = ({ children }) => {
         }
     };
 
-    const incrementAnswers = (playerId) => {
+    const incrementAnswers = (playerId : number) => {
         initializePlayerStats(playerId);
         setPlayerStats(prev => ({
             ...prev,
@@ -61,7 +82,7 @@ export const GameProvider = ({ children }) => {
         }));
     };
 
-    const incrementDrinks = (playerId) => {
+    const incrementDrinks = (playerId : number) => {
         initializePlayerStats(playerId);
         setPlayerStats(prev => ({
             ...prev,
@@ -72,18 +93,16 @@ export const GameProvider = ({ children }) => {
         }));
     };
 
-    const getPlayerStats = (playerId) => {
+    const getPlayerStats = (playerId : number) => {
         return playerStats[playerId] || { answers: 0, drinks: 0 };
     };
 
-    // Función para obtener todas las estadísticas
     const getAllStats = () => {
         return playerStats;
     };
 
-    // Función para obtener estadísticas en formato { nombre: [answers, drinks] }
     const getStatsFormatted = () => {
-        const formattedStats = {};
+        const formattedStats: Record<string, [number, number]> = {};
         players.forEach(player => {
             if (player.name) { // Solo incluir jugadores con nombre
                 const stats = getPlayerStats(player.id);
@@ -93,7 +112,7 @@ export const GameProvider = ({ children }) => {
         return formattedStats;
     };
 
-    const selectLevel = (level) => {
+    const selectLevel = (level : string) => {
         setSelectedLevel(level);
     };
 
@@ -136,7 +155,7 @@ export const GameProvider = ({ children }) => {
             { id: 2, name: "" }
         ]);
         setSelectedLevel("Easy");
-        setPlayerStats({}); // Resetear estadísticas
+        setPlayerStats({}); 
     };
 
     const value = {

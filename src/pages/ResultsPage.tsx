@@ -5,19 +5,19 @@ import text from "../assets/text.png";
 import { useGame } from "../pages/GameProvider";
 
 export default function ResultsPage() {
-    const { getCurrentPlayer, getGameInfo, getPlayerStats, getStatsFormatted, resetGame } = useGame();
+    const { getStatsFormatted, resetGame } = useGame();
 
     const allStats = getStatsFormatted();
 
     console.log('Estadísticas actuales:', allStats);
 
     // top answers
-    const topAnswers = Object.entries(allStats).reduce((max, [name, [answers, drinks]]) => {
+    const topAnswers = Object.entries(allStats).reduce((max, [name, [answers]]) => {
         return answers > max.answers ? { name, answers } : max;
     }, { name: "", answers: 0 });
     
     // top drinks
-    const topDrinks = Object.entries(allStats).reduce((max, [name, [answers, drinks]]) => {
+    const topDrinks = Object.entries(allStats).reduce((max, [name, [drinks]]) => {
         return drinks > max.drinks ? { name, drinks } : max;
     }, { name: "", drinks: 0 });
 

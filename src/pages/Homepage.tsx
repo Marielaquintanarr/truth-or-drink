@@ -53,7 +53,7 @@ export default function Homepage() {
                         ))}
                         <div 
                             className="bg-white text-black font-bold rounded-xl text-2xl hover:bg-gray-100 transition-colors mt-5 cursor-pointer"
-                            onClick={addPlayer}
+                            onClick={() => addPlayer}
                         >
                             Add Player
                         </div>

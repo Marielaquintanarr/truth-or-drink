@@ -8,10 +8,11 @@ import { useEffect, useState } from "react";
 export default function DrinkPage() {
     const { getCurrentPlayer, incrementDrinks, selectedLevel, } = useGame();
     const currentPlayer = getCurrentPlayer();
+    
+    const [drinks, setDrinks] = useState<{ drink: string }[]>([]);
 
-    const [drinks, setDrinks] = useState([]);
 
-    const getEndpointByLevel = (selectedLevel) => {
+    const getEndpointByLevel = (selectedLevel: string | null) => {
         switch (selectedLevel) {
           case "Easy":
             return "http://localhost:8080/drinkEasy";

@@ -4,15 +4,13 @@ import { useGame } from "../pages/GameProvider";
 import x from "../assets/X.png";
 
 export default function GamePage() {
-    const { getCurrentPlayer, selectedLevel, currentRound, getGameInfo, getPlayerStats, getStatsFormatted, incrementAnswers } = useGame();
+    const { getCurrentPlayer, selectedLevel, getPlayerStats, incrementAnswers } = useGame();
     const currentPlayer = getCurrentPlayer();
-    const gameInfo = getGameInfo();
     const playerStats = getPlayerStats(currentPlayer.id);
-    const allStats = getStatsFormatted();
 
-    const [questions, setQuestions] = useState([]);
+    const [questions, setQuestions] = useState<{ tell: string }[]>([]);
 
-    const getEndpointByLevel = (selectedLevel) => {
+    const getEndpointByLevel = (selectedLevel: string | null) => {
         switch (selectedLevel) {
           case "Easy":
             return "http://localhost:8080/tellEasy";
