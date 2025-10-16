@@ -1,15 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import circle from "../assets/circle.png";
 import shot from "../assets/shot.png";
 import text from "../assets/text.png";
 import { useGame } from "../pages/GameProvider";
 
 export default function ResultsPage() {
-    const { getCurrentPlayer, getGameInfo, getPlayerStats, getStatsFormatted, } = useGame();
+    const { getCurrentPlayer, getGameInfo, getPlayerStats, getStatsFormatted, resetGame } = useGame();
 
-    const currentPlayer = getCurrentPlayer();
-    const gameInfo = getGameInfo();
-    const playerStats = getPlayerStats(currentPlayer.id);
     const allStats = getStatsFormatted();
 
     console.log('Estadísticas actuales:', allStats);
@@ -23,6 +20,10 @@ export default function ResultsPage() {
     const topDrinks = Object.entries(allStats).reduce((max, [name, [answers, drinks]]) => {
         return drinks > max.drinks ? { name, drinks } : max;
     }, { name: "", drinks: 0 });
+
+    const handlePlayAgain = () => {
+        resetGame();
+    };
 
     return(
         <>
@@ -79,8 +80,7 @@ export default function ResultsPage() {
                         ))}
                     </div>
                 </div>
-
-                <Link to="/">
+                <Link to="/" onClick={handlePlayAgain}>
                     <div className="bg-white text-black font-bold px-12 py-4 rounded-xl text-xl hover:bg-gray-100 transition-colors">Play Again</div>
                 </Link>
             </div>

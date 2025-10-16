@@ -6,29 +6,47 @@ import { useGame } from "../pages/GameProvider";
 import { useEffect, useState } from "react";
 
 export default function DrinkPage() {
-    const { getCurrentPlayer, incrementDrinks } = useGame();
+    const { getCurrentPlayer, incrementDrinks, selectedLevel, } = useGame();
     const currentPlayer = getCurrentPlayer();
-    const [drinkCountdown, setDrinkCountdown] = useState(5);
-    const [showNextButton, setShowNextButton] = useState(false);
-    const [hasCountedDrink, setHasCountedDrink] = useState(false);
+
+    const [drinks, setDrinks] = useState([]);
+
+    const getEndpointByLevel = (selectedLevel) => {
+        switch (selectedLevel) {
+          case "Easy":
+            return "http://localhost:8080/drinkEasy";
+          case "Medium":
+            return "http://localhost:8080/drinkMedium";
+          case "Hard":
+            return "http://localhost:8080/drinkHard";
+          default:
+            return null;
+        }
+    };
 
     useEffect(() => {
-        if (drinkCountdown > 0) {
-            const timer = setTimeout(() => {
-                setDrinkCountdown(drinkCountdown - 1);
-            }, 1000);
-            return () => clearTimeout(timer);
-        } else {
-            // Cuando termine el countdown, contar la bebida y mostrar el botón
-            if (!hasCountedDrink) {
-                incrementDrinks(currentPlayer.id);
-                setHasCountedDrink(true);
-            }
-            setShowNextButton(true);
-        }
-    }, [drinkCountdown, hasCountedDrink, incrementDrinks, currentPlayer.id]);
+        const fetchData = async () => {
+          const endpoint = getEndpointByLevel(selectedLevel);
+          if (!endpoint) return;
+    
+          try {
+            const res = await fetch(endpoint);
+            const data = await res.json();
+            setDrinks(data);
+          } catch (error) {
+            console.error("Error al obtener datos:", error);
+          }
+        };
+    
+        fetchData();
+      }, [selectedLevel]);
+    
+    const currentDrink = drinks.length > 0 
+        ? drinks[Math.floor(Math.random() * drinks.length)].drink 
+        : "Loading...";
 
     const handleNext = () => {
+        incrementDrinks(currentPlayer.id);
     };
     return(
         <>
@@ -47,21 +65,21 @@ export default function DrinkPage() {
 
                 <div className="bg-white/33 pl-8 pt-8 pr-8 rounded-3xl mb-12 w-full max-w-2xl">
                     <h2 className="font-extrabold text-4xl m-0 leading-none text-center mb-7">
-                        {drinkCountdown > 0 ? `Take a ${drinkCountdown} second shot` : "Shot completed!"}
+                        {currentDrink}
                     </h2>
                     <img src={bacardi} className="mx-auto block"/>
                 </div>
                 
-                {showNextButton && (
-                    <Link to="/waitingpage">
+                
+                <Link to="/waitingpage" onClick={handleNext}>
                         <div 
                             className="bg-white text-black font-bold px-35 py-2 rounded-xl text-3xl hover:bg-gray-100 transition-colors"
                             onClick={handleNext}
                         >
                             Next
                         </div>
-                    </Link>
-                )}
+                </Link>
+
             </div>
         </>
     )

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import circle from "../assets/circle.png";
+import { useEffect, useState } from "react";
 import { useGame } from "../pages/GameProvider";
 import x from "../assets/X.png";
 
@@ -9,6 +9,42 @@ export default function GamePage() {
     const gameInfo = getGameInfo();
     const playerStats = getPlayerStats(currentPlayer.id);
     const allStats = getStatsFormatted();
+
+    const [questions, setQuestions] = useState([]);
+
+    const getEndpointByLevel = (selectedLevel) => {
+        switch (selectedLevel) {
+          case "Easy":
+            return "http://localhost:8080/tellEasy";
+          case "Medium":
+            return "http://localhost:8080/tellMedium";
+          case "Hard":
+            return "http://localhost:8080/tellHard";
+          default:
+            return null;
+        }
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+          const endpoint = getEndpointByLevel(selectedLevel);
+          if (!endpoint) return;
+    
+          try {
+            const res = await fetch(endpoint);
+            const data = await res.json();
+            setQuestions(data);
+          } catch (error) {
+            console.error("Error al obtener datos:", error);
+          }
+        };
+    
+        fetchData();
+      }, [selectedLevel]);
+    
+      const currentQuestion = questions.length > 0 
+        ? questions[Math.floor(Math.random() * questions.length)].tell 
+        : "Loading...";
 
     const handleAnswer = () => {
         incrementAnswers(currentPlayer.id);
@@ -41,6 +77,7 @@ export default function GamePage() {
                             <p>answers</p>
                         </div>
                     </div>
+                    <p className="font-bold text-3xl text-white mt-2">{currentQuestion}</p>
                     <p className="font-black text-4xl text-white mt-15">
                         Level: {selectedLevel}
                     </p>
