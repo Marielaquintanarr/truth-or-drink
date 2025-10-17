@@ -18,7 +18,7 @@ export default function Homepage() {
                 <img className="absolute top-0 z-20" src={circle} />
                 <div style={{display: "flex", gap: "1px", flexDirection: "column",}}>   
                     <p 
-                        className="font-black text-6xl text-white,m-0, mt-10" 
+                        className="font-black text-6xl text-white,m-0, mt-15" 
                         style={{ WebkitTextStroke: "2px white"}}
                         >
                         TRUTH
