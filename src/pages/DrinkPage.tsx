@@ -64,7 +64,7 @@ export default function DrinkPage() {
                      {currentPlayer.name.toUpperCase()} DRINKS
                 </h1>
 
-                <div className="bg-white/33 pl-5 pt-5 pr-65 rounded-3xl mb-12 w-full max-w-2xl">
+                <div className="bg-white/33 pl-5 pt-5 pr-5 rounded-3xl mb-12 w-full max-w-2xl">
                     <h2 className="font-extrabold text-3xl m-0 leading-none text-center mb-7">
                         {currentDrink}
                     </h2>
