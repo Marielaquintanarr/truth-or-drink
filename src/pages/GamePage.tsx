@@ -58,12 +58,12 @@ export default function GamePage() {
                 <div className="bg-white/33 pl-5 pt-5 pr-5 pb-5 rounded-3xl mt-10">
                 <div style={{display: "flex", flexDirection: "column", margin: 0}}>
                         <p 
-                            className="font-black text-6xl text-white mt-3 leading-none" 
+                            className="font-black text-5xl text-white mt-3 leading-none" 
                             style={{ WebkitTextStroke: "2px white uppercase" }}
                             >
                              {currentPlayer.name.toUpperCase()}'S
                         </p>
-                        <p className="font-extrabold text-6xl m-0 leading-none">turn</p>
+                        <p className="font-extrabold text-5xl m-0 leading-none">turn</p>
                     </div>
                     <div style={{display: "flex", gap: "20px", justifyContent: "center"}} className="mt-10">
                         <div style={{display: "flex", gap: "10px"}} className="font-black text-4xl text-white" >
