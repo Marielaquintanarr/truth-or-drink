@@ -29,7 +29,7 @@ export default function Homepage() {
                         style={{ WebkitTextStroke: "2px white" }}>DRINK</p>
                 </div>
         
-                <div className="bg-white/33 pl-6 pt-6 pr-6 pb-6 rounded-3xl mt-10">
+                <div className="bg-white/33 pl-5 pt-5 pr-5 pb-5 rounded-3xl mt-10">
                     <p className="font-extrabold text-7xl ml-0 mb-10 mt-0 text-left">Players</p>
                     <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>
                         {players.map((player) => (
