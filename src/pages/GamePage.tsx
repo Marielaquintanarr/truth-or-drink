@@ -55,7 +55,7 @@ export default function GamePage() {
                     <img className="absolute top-0 left-0 pl-10 pt-10" src={x}/>
                 </Link>
 
-                <div className="bg-white/33 pl-8 pt-8 pr-8 pb-8 rounded-3xl mt-10">
+                <div className="bg-white/33 pl-6 pt-6 pr-6 pb-6 rounded-3xl mt-10">
                 <div style={{display: "flex", flexDirection: "column", margin: 0}}>
                         <p 
                             className="font-black text-6xl text-white mt-3 leading-none" 
