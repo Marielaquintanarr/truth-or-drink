@@ -58,34 +58,34 @@ export default function GamePage() {
                 <div className="bg-white/33 pl-5 pt-5 pr-5 pb-5 rounded-3xl mt-10">
                 <div style={{display: "flex", flexDirection: "column", margin: 0}}>
                         <p 
-                            className="font-black text-5xl text-white mt-3 leading-none" 
+                            className="font-black text-4xl text-white mt-3 leading-none" 
                             style={{ WebkitTextStroke: "2px white uppercase" }}
                             >
                              {currentPlayer.name.toUpperCase()}'S
                         </p>
-                        <p className="font-extrabold text-5xl m-0 leading-none">turn</p>
+                        <p className="font-extrabold text-4xl m-0 leading-none">turn</p>
                     </div>
                     <div style={{display: "flex", gap: "20px", justifyContent: "center"}} className="mt-10">
-                        <div style={{display: "flex", gap: "10px"}} className="font-black text-4xl text-white" >
+                        <div style={{display: "flex", gap: "10px"}} className="font-black text-3xl text-white" >
                             <p className="text-[#643DB8]">{playerStats.drinks}</p>
                             <p>drinks</p>
                         </div>
-                        <div style={{display: "flex", gap: "10px"}} className="font-black text-4xl text-white">
+                        <div style={{display: "flex", gap: "10px"}} className="font-black text-3xl text-white">
                             <p className="text-[#643DB8]">{playerStats.answers}</p>
                             <p>answers</p>
                         </div>
                     </div>
-                    <p className="font-bold text-3xl text-white mt-2">{currentQuestion}</p>
-                    <p className="font-black text-4xl text-white mt-15">
+                    <p className="font-bold text-2xl text-white mt-2">{currentQuestion}</p>
+                    <p className="font-black text-3xl text-white mt-15">
                         Level: {selectedLevel}
                     </p>
                 </div>
                 <div style={{ display: "flex", gap: "20px"}} className="mt-5">
                     <Link to="/waitingpage" onClick={handleAnswer}>
-                        <div className="bg-[#643DB8] text-white font-bold px-12 py-4 rounded-xl text-4xl hover:bg-gray-100 transition-colors mt-5 pl-10 pr-10">Answer</div>
+                        <div className="bg-[#643DB8] text-white font-bold px-10 py-4 rounded-xl text-3xl hover:bg-gray-100 transition-colors mt-5 pl-8 pr-8">Answer</div>
                     </Link>
                     <Link to="/drinkpage">
-                        <div className="bg-white text-black font-bold px-12 py-4 rounded-xl text-4xl hover:bg-gray-100 transition-colors mt-5 pl-10 pr-10">Drink</div>
+                        <div className="bg-white text-black font-bold px-10 py-4 rounded-xl text-3xl hover:bg-gray-100 transition-colors mt-5 pl-8 pr-8">Drink</div>
                     </Link>
                 </div>
             </div>
