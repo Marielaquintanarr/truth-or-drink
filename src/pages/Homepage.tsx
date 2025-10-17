@@ -16,16 +16,16 @@ export default function Homepage() {
         <>
             <div className="flex flex-col items-center justify-center min-h-screen">
                 <img className="absolute top-0 z-20" src={circle} />
-                <div style={{display: "flex", gap: "5px"}}>   
+                <div style={{display: "flex", gap: "1px", flexDirection: "column"}}>   
                     <p 
-                        className="font-black text-6xl text-white, mt-10" 
+                        className="font-black text-6xl text-white,m-0" 
                         style={{ WebkitTextStroke: "2px white" }}
                         >
                         TRUTH
                     </p>
 
-                    <p className="font-extrabold text-5xl mt-10">or</p>
-                    <p className="font-black text-6xl text-white mt-10" 
+                    <p className="font-extrabold text-5xl  m-0">or</p>
+                    <p className="font-black text-6xl text-white m-0" 
                         style={{ WebkitTextStroke: "2px white" }}>DRINK</p>
                 </div>
         
