@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 interface GameContextType {
     players: any[];
     selectedLevel: string | null;
-    addPlayer: (name: string) => void;
+    addPlayer: () => void;
     removePlayer: (id: number) => void;
     updatePlayerName: (id: number, name: string) => void;
     selectLevel: (level: string) => void;
