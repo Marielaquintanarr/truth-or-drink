@@ -17,9 +17,11 @@ export default function ResultsPage() {
     }, { name: "", answers: 0 });
     
     // top drinks
-    const topDrinks = Object.entries(allStats).reduce((max, [name, [drinks]]) => {
-        return drinks > max.drinks ? { name, drinks } : max;
-    }, { name: "", drinks: 0 });
+    const topDrinks = Object.entries(allStats).reduce(
+        (max, [name, [_, drinks]]) =>   
+          drinks > max.drinks ? { name, drinks } : max,
+        { name: "", drinks: 0 }
+    );
 
     const handlePlayAgain = () => {
         resetGame();
