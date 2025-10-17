@@ -17,11 +17,12 @@ export default function ResultsPage() {
     }, { name: "", answers: 0 });
     
     // top drinks
-    const topDrinks = Object.entries(allStats).reduce(
-        (max, [name, [_, drinks]]) =>   
-          drinks > max.drinks ? { name, drinks } : max,
+    // eslint-disable-next-line no-unused-vars
+    const topDrinks = Object.entries(allStats).reduce((max, [name, [_, drinks]]) =>
+        drinks > max.drinks ? { name, drinks } : max,
         { name: "", drinks: 0 }
     );
+  
 
     const handlePlayAgain = () => {
         resetGame();
