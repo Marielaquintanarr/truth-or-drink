@@ -15,11 +15,11 @@ export default function DrinkPage() {
     const getEndpointByLevel = (selectedLevel: string | null) => {
         switch (selectedLevel) {
           case "Easy":
-            return "http://localhost:8080/drinkEasy";
+            return "https://truth-or-drink-backend.onrender.com/drinkEasy";
           case "Medium":
-            return "http://localhost:8080/drinkMedium";
+            return "https://truth-or-drink-backend.onrender.com/drinkMedium";
           case "Hard":
-            return "http://localhost:8080/drinkHard";
+            return "https://truth-or-drink-backend.onrender.com/drinkHard";
           default:
             return null;
         }

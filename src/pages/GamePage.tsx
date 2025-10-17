@@ -13,11 +13,11 @@ export default function GamePage() {
     const getEndpointByLevel = (selectedLevel: string | null) => {
         switch (selectedLevel) {
           case "Easy":
-            return "http://localhost:8080/tellEasy";
+            return "https://truth-or-drink-backend.onrender.com/tellEasy";
           case "Medium":
-            return "http://localhost:8080/tellMedium";
+            return "https://truth-or-drink-backend.onrender.com/tellMedium";
           case "Hard":
-            return "http://localhost:8080/tellHard";
+            return "https://truth-or-drink-backend.onrender.com/tellHard";
           default:
             return null;
         }
