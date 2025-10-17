@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 export default function DrinkPage() {
     const { getCurrentPlayer, incrementDrinks, selectedLevel, } = useGame();
     const currentPlayer = getCurrentPlayer();
-    
+
     const [drinks, setDrinks] = useState<{ drink: string }[]>([]);
 
 
@@ -58,13 +58,13 @@ export default function DrinkPage() {
                 </Link>
                 
                 <h1 
-                        className="font-black text-8xl text-white mb-8" 
+                        className="font-black text-8xl text-white mb-8 mt-5" 
                         style={{ WebkitTextStroke: "2px white" }}
                     >
                      {currentPlayer.name.toUpperCase()} DRINKS
                 </h1>
 
-                <div className="bg-white/33 pl-8 pt-8 pr-8 rounded-3xl mb-12 w-full max-w-2xl">
+                <div className="bg-white/33 pl-6 pt-6 pr-6 rounded-3xl mb-12 w-full max-w-2xl">
                     <h2 className="font-extrabold text-4xl m-0 leading-none text-center mb-7">
                         {currentDrink}
                     </h2>
