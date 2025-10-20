@@ -28,6 +28,6 @@ Try it now! https://truthordrinkmq.netlify.app/
 3. When a new question is needed, the frontend sends a `GET` request to the backend, which fetches a random question from the database and returns it.
 
 
-## ✨ Author
+## Author
 Developed by **[Mariela Quintanar](https://github.com/Marielaquintanarr)**
 
